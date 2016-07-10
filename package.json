@@ -1,7 +1,7 @@
 {
-  "name": "yes-or-no",
-  "version": "1.0.1",
-  "description": "Add simple yes/no handlebars helper",
+  "name": "ember-range",
+  "version": "0.0.0",
+  "description": "Stand-alone helper for python-like range tool",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -56,6 +56,6 @@
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",
-    "demoURL": "https://djsegal.github.io/yes-or-no"
+    "demoURL": "https://djsegal.github.io/ember-range"
   }
 }

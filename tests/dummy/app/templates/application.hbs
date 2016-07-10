@@ -1,66 +1,23 @@
-{{yesno-navbar}}
+{{ember-range-navbar}}
 
 <div class="{{ if media.isDesktop 'layout-row' 'layout-column'}} flex">
 
-  <div class="layout-column flex-30">
+  <div class="layout-column flex">
 
     {{#paper-card class="flex" as |card|}}
 
       {{#card.title as |title|}}
         {{#title.text as |text|}}
-          {{#text.headline}}Grid Generator{{/text.headline}}
-          {{#text.subhead class=(if media.isMobile 'hide')}}The Nitty Griddy{{/text.subhead}}
+          {{#text.headline}}{{/text.headline}}
+          {{#text.subhead}}{{/text.subhead}}
         {{/title.text}}
       {{/card.title}}
 
       {{#card.content}}
 
-        <div layout>
-          <div flex="20" layout layout-align="center center">
-            <span>%Yes</span>
-          </div>
-          {{paper-slider flex=true min='0' max='100' value=weightOfYes class='md-primary'}}
-          <div flex="15" layout layout-align="center center">
-            {{input type="number" value=weightOfYes}}
-          </div>
-        </div>
-
-        <div layout class="{{ if media.isMobile 'hide'}}">
-          <div flex="20" layout layout-align="center center">
-            <span>Delay</span>
-          </div>
-          {{paper-slider flex=true min='1' max='250' value=delay class='md-primary'}}
-          <div flex="15" layout layout-align="center center">
-            {{input type="number" value=delay}}
-          </div>
-        </div>
-
-        <div layout class="{{ if media.isMobile 'hide'}}">
-          <div flex="20" layout layout-align="center center">
-            <span>Rows</span>
-          </div>
-          {{paper-slider flex=true min='1' max='25' value=rows class='md-primary'}}
-          <div flex="15" layout layout-align="center center">
-            {{input type="number" value=rows}}
-          </div>
-        </div>
-
-        <div layout class="{{ if media.isMobile 'hide'}}">
-          <div flex="20" layout layout-align="center center">
-            <span>Cols</span>
-          </div>
-          {{paper-slider flex=true min='1' max='25' value=cols class='md-primary'}}
-          <div flex="15" layout layout-align="center center">
-            {{input type="number" value=cols}}
-          </div>
-        </div>
-
       {{/card.content}}
 
       {{#card.actions}}
-        {{#paper-button onClick=(action "twinkle")}}Twinkle{{/paper-button}}
-        {{#paper-button onClick=(action "restart")}}Restart{{/paper-button}}
-        {{#paper-button onClick=(action "refresh")}}Refresh{{/paper-button}}
       {{/card.actions}}
 
     {{/paper-card}}
@@ -69,20 +26,23 @@
 
   <div class="layout-column flex">
 
-    {{#each (range 1 rows true) as |i|}}
+    {{#paper-card class="flex" as |card|}}
 
-      <div class="layout-row flex">
+      {{#card.title as |title|}}
+        {{#title.text as |text|}}
+          {{#text.headline}}{{/text.headline}}
+          {{#text.subhead}}{{/text.subhead}}
+        {{/title.text}}
+      {{/card.title}}
 
-        {{#each (range 1 cols true) as |j|}}
+      {{#card.content}}
 
-          {{#paper-card class=(concat "flex " (if (yes-or-no (div weightOfYes 100)) 'green' 'red')) as |card|}}
-          {{/paper-card}}
+      {{/card.content}}
 
-        {{/each}}
+      {{#card.actions}}
+      {{/card.actions}}
 
-      </div>
-
-    {{/each}}
+    {{/paper-card}}
 
   </div>
 

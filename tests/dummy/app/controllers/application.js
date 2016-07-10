@@ -1,42 +1,35 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  yesnoPoller: Ember.inject.service(),
-  rows: 4,
-  cols: 4,
-  weightOfYes: 50,
-  delay: 50,
-  isTwinkling: false,
+  emberRangePoller: Ember.inject.service(),
+  isBlanking: false,
   defaults: {},
 
   setDefaults: Ember.on('init', function() {
     let defaults = {
-      rows: this.get('rows'),
-      cols: this.get('cols'),
-      weightOfYes: this.get('weightOfYes'),
-      isTwinkling: this.get('isTwinkling')
+      isBlanking: this.get('isBlanking')
     };
 
     this.set('defaults', defaults);
   }),
 
   triggerUpdate: function() {
-    this.notifyPropertyChange('weightOfYes');
+    // this.notifyPropertyChange('');
   },
 
   stopTimer: function() {
-    let poller = this.get('yesnoPoller'),
-        isTwinkling = this.get('isTwinkling');
+    let poller = this.get('emberRangePoller'),
+        isBlanking = this.get('isBlanking');
 
-    if ( !isTwinkling ) { return false; }
+    if ( !isBlanking ) { return false; }
 
-    this.set('isTwinkling', false);
+    this.set('isBlanking', false);
     poller.stop();
     return true;
   },
 
   updateDelay: Ember.on('init', Ember.observer('delay', function() {
-    let poller = this.get('yesnoPoller'),
+    let poller = this.get('emberRangePoller'),
         delay = this.get('delay') * 10;
 
     poller.setInterval(delay);
@@ -65,11 +58,11 @@ export default Ember.Controller.extend({
     },
 
     twinkle: function() {
-      let poller = this.get('yesnoPoller'),
-          stoppedTwinkling = this.stopTimer();
+      let poller = this.get('emberRangePoller'),
+          stoppedBlanking = this.stopTimer();
 
-      if ( stoppedTwinkling ) { return; }
-      this.set('isTwinkling', true);
+      if ( stoppedBlanking ) { return; }
+      this.set('isBlanking', true);
 
       poller.start(this, function() {
         this.triggerUpdate();

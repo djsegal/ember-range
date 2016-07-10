@@ -2,5 +2,5 @@
 'use strict';
 
 module.exports = {
-  name: 'yes-or-no'
+  name: 'ember-range'
 };
